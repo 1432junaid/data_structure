@@ -11,12 +11,12 @@ int insert(struct node**,int, int);			//prototype declarration
 void traverse_list(struct node*);			//prototype decleration
 int count(struct node*);
 int search(struct node*,int);
-int delete(struct node**,int,int);
+int delete_list(struct node**,int);
 
 
 int main(int argc,char*arg[]){
 	struct node *head= NULL;
-	int option,n,c,data,position;
+	int option,n,c,data,p,position;
 
 
 	while(1){
@@ -49,11 +49,21 @@ int main(int argc,char*arg[]){
 			case 5:
 				printf("Enter position\n");
 				scanf("%d",&c);
-				c=delete(&head,c);
+				c=delete_list(&head,c);
 				if(c==1){
 					printf("delete node\n");
 				}else{
 					printf("not delete data\n");
+				}
+			break;
+			case 6:
+				printf("Enter data to be searched\n");
+				scanf("%d",&n);
+				c=search(head,n);
+				if(c==1){
+					printf("data found\n");
+				}else{
+					printf("data  not found\n");
 				}
 			break;
 			case 10:
@@ -158,7 +168,7 @@ int insert(struct node **hpointer,int data, int position){		//insert function
 	return 0;
 }
 
-int delete(struct node **start,int position){			//delete function
+int delete_list(struct node **start,int position){			//delete function
 	struct node *p,*q;
 	p=*start;
 	int count=0,count1=1;
@@ -196,3 +206,15 @@ int delete(struct node **start,int position){			//delete function
 	return 1;
 	}
 }
+/*
+int search(struct node *start,int data){
+	while(start!=NULL){
+		if(start->data == data){
+			return 1;
+		}else{
+			start = start->next;
+		}
+	}
+	return 0;
+}
+*/
