@@ -9,16 +9,18 @@ struct node{
 struct node * create_list();				//prototype declaration
 int insert(struct node**,int, int);			//prototype declarration
 void traverse_list(struct node*);			//prototype decleration
-
+int count(struct node*);
+int search(struct node*,int);
+int delete(struct node**,int,int);
 
 
 int main(int argc,char*arg[]){
 	struct node *head= NULL;
-	int option,data,position;
+	int option,n,c,data,position;
 
 
 	while(1){
-		printf("\n\t1.Create\n\t2.Traverse\n \t3.insert node in exisiting linked list\n \t4.count\n \t5.delete\n \t6.searching\n \t10.exit\n\n");
+		printf("\n\t1.Create\n\t2.Traverse\n \t3.insert\n \t4.count\n \t5.delete\n \t6.search\n \t10.exit\n\n");
 		scanf("%d",&option);
 		switch(option){
 			case 1:				//for create node
@@ -40,16 +42,18 @@ int main(int argc,char*arg[]){
 				}
 			break;
 			case 4:				//for count number of nodes
-				printf("number of nodes are\n");
-				int c = count(&head);
-				printf("\nnumber of nodes=%d\n",c);
+				//printf("number of nodes are\n");
+				p = count(head);
+				printf("\nnumber of nodes=%d\n",p);
 			break;
 			case 5:
-				int j = delete(&head,position);
-				if(j==1){
-					printf("can be delete");
+				printf("Enter position\n");
+				scanf("%d",&c);
+				c=delete(&head,c);
+				if(c==1){
+					printf("delete node\n");
 				}else{
-					printf("can not delete");
+					printf("not delete data\n");
 				}
 			break;
 			case 10:
@@ -154,29 +158,41 @@ int insert(struct node **hpointer,int data, int position){		//insert function
 	return 0;
 }
 
-int delete(struct node **hpointer,int position){			//delete function
-	if(*hpointer == NULL && position == 1){
-		return 0;
-	}
-	int count=0;p=*hpointer;
-	while(p != NULL && count != position-1){
+int delete(struct node **start,int position){			//delete function
+	struct node *p,*q;
+	p=*start;
+	int count=0,count1=1;
+	if(p == NULL && position>1)return 0;	//linklist is empty;
+	while(p != NULL){
+		p=p->next;
 		count++;
-		p = p->next;
 	}
-	if(*hpointer != NULL && position > count ){
-		return 0;
+	if(count < position)return 0; 		//position not exist in linklist
+	p=*start;
+	if(p!=NULL && position ==1){		//first  node delete
+		*start = p->next;
+		free(p);
+		return 1;
 	}
-	if(*hpointer !== NULL && position == -1){
-		p = *hpointer;
-		q = *hpointer;
-		while(q->next != NULL){
+	p=*start;
+	q=*start;
+	if(p != NULL && position ==-1){		//last node delete
+		while(q->next!=NULL){
 			p=q;
 			q=q->next;
 		}
+		p->next = q->next;
 		free(q);
+	return 1;
 	}
-	if(*hpointer !=NULL && position == 1){
-		head = head->next;
-		free(p);
+	while(p!=NULL && count1 != position-1){ //brtween node delete
+		count1++;
+		p=p->next;
+	}
+	if(count1 == position-1){
+		q = p->next;
+		p->next = q->next;
+		free(q);
+	return 1;
 	}
 }
