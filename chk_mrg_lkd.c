@@ -41,12 +41,10 @@ int main(int argc,char*arg[]){
                         break;
 			case 4:
 				chk = chk_mrg(head1,head2);
-				if(chk == 0){
-					printf("list is empty\n");
-				}if(chk == 1){
-					printf("\n!!merged\n");
+				if(chk == 1){
+					printf("list merged\n");
 				}else{
-					printf("\nnot merged\n");
+					printf("list not merget \n");
 				}
 			break;
 			case 5:
@@ -110,7 +108,7 @@ int count(struct node *start){                                          //count 
         return count;
 }
 
-
+/*
 int chk_mrg(struct node *h1,struct node *h2){
 	if(h1 == NULL && h2 == NULL)return 0;		//empty list
 	struct node *p,*q;
@@ -123,6 +121,21 @@ int chk_mrg(struct node *h1,struct node *h2){
 		}
 		h1 = h1->next;
 	}
+}
+*/
+int chk_mrg(struct node *h1,struct node *h2){
+	struct node *p,*q;
+		p=h1;
+		q=h2;
+	while(p != NULL){
+		q=h2;
+		while(q!=NULL){
+			if(p == q) return 1;
+			q=q->next;
+		}
+		p=p->next;
+	}
+	return 0;
 }
 
 void traverse_list(struct node *p){                                     //traverse function

@@ -1,5 +1,6 @@
+
 #include<stdio.h>
-#include<conio.h>
+#include<stdlib.h>
 
 struct node{
         int data;
@@ -7,15 +8,14 @@ struct node{
 };
 
 struct node * create_list();                            //prototype declaration
-//int insert(struct node**,int, int);                     //prototype declarration
 void traverse_list(struct node*);                       //prototype decleration
 int count(struct node*);
-int loop(struct node*,struct node*,int);
-int chk_loop(struct node)
+void loop(struct node*);
+int chk_loop(struct node*);
 
-int main(int argc,char*arg[]){
+int main(){
         struct node *head= NULL;
-        int option,n,c,data,p,position;
+        int option,n,c,data,p,position,chk;
 
 
         while(1){
@@ -33,9 +33,27 @@ int main(int argc,char*arg[]){
 			case 2:
 				traverse_list(head);	//for traverse
 			break;
+			case 3:
+                                p = count(head);
+                                printf("\nnumber of nodes=%d\n",p);
+                        break;
+			case 4:
+				loop(head);
+			break;
+			case 5:
+				chk = chk_loop(head);
+				if(chk == 1){
+					printf("loop found\n");
+				}else{
+					printf("loop not found\n");
+				}
+			break;
 			case 10:
 				return 0;
 		}
+	}
+	return 0;
+}
 
 
 
@@ -82,3 +100,37 @@ int count(struct node *start){                                          //count 
         return count;
 }
 
+void loop(struct node *h){
+//	if(h == NULL)return 0;
+	struct node *p,*q;
+		q=h;
+		p=h;
+		p=p->next;
+//	for(int i=0;i<10;i++){
+		while(q->next !=NULL){
+			q=q->next;
+			traverse_list(q);
+		}
+		q->next = p;
+//		traverse_list(h);
+//	}
+}
+
+int chk_loop(struct node *head){
+	struct node *p,*q;
+	if(head == NULL)return 0;
+	if(head->next == NULL)return 0;
+	p=head;
+	q=head;
+	while((p->next !=NULL && q->next->next != NULL) && q->next != NULL && q!=NULL){
+		p=p->next;
+	//	if(p->next != NULL){
+	//		q = p->next;
+	//	}else{
+	//			return 0;
+	//	}
+		q = q->next->next;
+		if(p == q)return 1;
+	}
+	return 0;
+}
