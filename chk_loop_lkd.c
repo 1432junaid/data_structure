@@ -12,10 +12,11 @@ void traverse_list(struct node*);                       //prototype decleration
 int count(struct node*);
 void loop(struct node*);
 int chk_loop(struct node*);
+int chk_loop_point(struct node*);
 
 int main(){
         struct node *head= NULL;
-        int option,n,c,data,p,position,chk;
+        int option,n,c,data,p,position,chk,lp;
 
 
         while(1){
@@ -47,6 +48,9 @@ int main(){
 				}else{
 					printf("loop not found\n");
 				}
+			break;
+			case 6:
+				lp = chk_loop_point(head);
 			break;
 			case 10:
 				return 0;
@@ -133,4 +137,11 @@ int chk_loop(struct node *head){
 		if(p == q)return 1;
 	}
 	return 0;
+}
+
+
+int chk_loop_point(struct node *h){
+	struct node *p,*q;
+	if(p == NULL)return 0;
+
 }

@@ -12,7 +12,7 @@ void traverse_list(struct node*);			//prototype decleration
 int count(struct node*);
 int search(struct node*,int);
 int delete_list(struct node**,int);
-
+void reverse(struct node**);
 
 int main(int argc,char*arg[]){
 	struct node *head= NULL;
@@ -20,7 +20,7 @@ int main(int argc,char*arg[]){
 
 
 	while(1){
-		printf("\n\t1.Create\n\t2.Traverse\n \t3.insert\n \t4.count\n \t5.delete\n \t6.search\n \t10.exit\n\n");
+		printf("\n\t1.Create\n\t2.Traverse\n \t3.insert\n \t4.count\n \t5.delete\n \t6.search\n \t7.reverse\n \t10.exit\n\n");
 		scanf("%d",&option);
 		switch(option){
 			case 1:				//for create node
@@ -65,6 +65,10 @@ int main(int argc,char*arg[]){
 				}else{
 					printf("data  not found\n");
 				}
+			break;
+			case 7:
+				reverse(&head);
+//				traverse_list(head);
 			break;
 			case 10:
 				return 0;
@@ -218,3 +222,18 @@ int search(struct node *start,int data){
 	return 0;
 }
 */
+
+void reverse(struct node **h){
+	struct node *p,*q;
+//	struct node **h;
+	p = *h;
+	q = p->next;
+	if(p == *h)p->next = NULL;
+	while(q != NULL){
+		*h = q;
+		q=q->next;
+		(*h)->next = p;
+		p = *h;
+	}
+	traverse_list(*h);
+}
