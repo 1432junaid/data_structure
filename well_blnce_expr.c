@@ -10,6 +10,7 @@ struct sinfo{
 
 int main(){
 	int data,option;
+	struct sinfo *s1,s2;
 	while(1){
 		printf("1.Enter expression\n");
 		printf("2.Check expression\n");
@@ -19,23 +20,31 @@ int main(){
 		switch(option){
 			case 1:
 				scanf("%d",&data);
-				push(data);
-				if()
+				create_stack(30);
+				push(s1,data);
 			break;
+			case 3:
+				printf("bye bye!!\n");
+				return 0;
+		}
+	}
 	return 0;
 }
-int push(char a){
-        if(s->top==s->size)return 0;
-        s->stackp[++(s->top)]=data;
-        return 1;
-};
-create(int size);
-	return (char)calloc(sizeof(char),size);
-}
+
 int push(struct sinfo *s,int data){
         if(s->top==s->size)return 0;
         s->stackp[++(s->top)]=data;
         return 1;
-};
+}
+
+
+
+struct sinfo *create_stack(int size){
+        struct sinfo *s = (struct sinfo*)malloc(sizeof(struct sinfo));
+        s->top = -1;
+        s->size = size;
+        s->stackp = (int*)calloc(sizeof(int),size);
+        return s;
+}
 
 
