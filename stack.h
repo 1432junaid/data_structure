@@ -13,7 +13,7 @@ struct sinfo *create_stack(int size){
 	return s;
 }
 
-int push(struct sinfo *s,int data){
+int push(struct sinfo *s,char data){
 	if(s->top==s->size)return 0;
 	s->stackp[++(s->top)]=data;
 	return 1;
