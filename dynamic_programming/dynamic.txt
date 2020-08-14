@@ -1,0 +1,35 @@
+
+Dynamic Programming:
+
+1. Optimal substrucutres.
+	if we want to go A to D and there is multiple path exist then we break path
+	then may be you have path to reach at first A to C and may be you have path 
+	to A to B. so we can see there are optimal solution to the reach at the near-
+	est  city then we connect to optimal path then and all together we go to
+	source to destination.
+  
+2. Substructure overlapping.
+	if there we may be substructure they there may be that path is exist that we 
+	travell of before. so there are overlapping .
+
+3. Memorization
+	in order to remove overlapping we must memorize that this path is visited before
+	so in dynamic Programming we do memorizaion in order to remove overlapping.
+Ex:
+					   fib(6)
+					  /      \
+				     fib(5)  +   fib(4)
+				       /	      \
+			        fib(4) + fib(3)       fib(3)  + fib(2)
+			      /		 \	           \
+		    fib(3) + fib(2)	 fib(2)+fib(1)	    fib(2) + fib(1)
+		      /
+	   fib(2) + fib(1)
+
+[there are may fibonachi steps are overlapped]
+
+
+
+2 ways to solve Dynamic Programming problems:
+1. Top - down approach
+2. Bottom-up approach
