@@ -13,7 +13,7 @@ int rod_cutting(int len, int price[]){
 }
 
 int main(){
-	int price[] = {1,2,5,8,9,10,17,20,24,30};
+	int price[] = {0,1,5,8,9,10,17,20,24,30};
 	int len ;
 	cout << "Enter lenght of rod : ";
 	cin >> len;
