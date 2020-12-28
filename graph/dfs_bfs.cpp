@@ -29,8 +29,12 @@ int main(){
 
 	graph[5].push_back({4,2});
 	graph[5].push_back({1,1});
-//	dfs(5);
-	bfs(1);
+	cout << "1 : dfs"<<endl<< "2 : bfs"<< endl;
+	int choose;
+	cout << "Enter choice"<< endl;
+	cin >> choose;
+	if(choose ==1)dfs(1);
+	else 	bfs(1);
 	return 0;
 }
 
@@ -38,7 +42,6 @@ void dfs(int node){
 	if(visited[node]) return;
 	visited[node] = true;
 	cout << node << "  visited " << endl;
-//	vector<pair<int,int>> :: iterator itr = graph.begin();
 	for(auto itr : graph[node]) dfs(itr.first);
 }
 
